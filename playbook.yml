@@ -7,7 +7,7 @@
       - 409203825 # Numbers (5.0.1)
       - 409183694 # Keynote (8.0.1)
       - 682658836 # GarageBand (10.2.0)
-      - 408981434 # iMovie (10.1.9)    
+      - 408981434 # iMovie (10.1.9)
       - 1295203466 # Microsoft Remote Desktop (10.1.8)
       - 1381004916 # Discovery (2.0.1)
       - 425424353 # The Unarchiver (3.11.6)
@@ -170,20 +170,13 @@
       register: brew_installed
 
     - name: Install Homebrew
-      shell: ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+      #shell: ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+      shell: /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
       when: brew_installed.stat.exists == false
 
     - name: Install required Homebrew Taps
       shell: brew tap {{ item }}
       with_items: "{{ brew_taps }}"
-
-    - name: Check homebrew-cask is installed
-      stat: path=/usr/local/bin/brew-cask.rb
-      register: brew_cask_installed
-
-    #- name: Install homebrew-cask
-    #  shell: brew install brew-cask
-    #  when: brew_cask_installed.stat.exists == false
 
     ### UTILS
    # - name: Create sshpass v1.06 formula
@@ -226,39 +219,11 @@
       with_items: "{{ dockitems_to_persist }}"
 
 
-    ### ZSH radness
-
-    - name: Determine if zsh is default/current shell
-      shell: echo $SHELL
-      register: current_shell
-
-#    - name: Enable zsh in /etc/shells
-#      shell: sudo /bin/sh -c 'grep -q "{{ zsh_path }}" /etc/shells || echo "{{ zsh_path }}" >> /etc/shells'
-#      when: current_shell.stdout != '/usr/local/bin/zsh'
-#      #" unbreak my syntax highlighting...
-
-#    - name: Set zsh as default shell
-#      shell: chsh -s {{ zsh_path }}
-#      when: current_shell.stdout != '/usr/local/bin/zsh'
-#      sudo: true
-
-#    - name: Use GNU tools instead of osx counterparts (grep find etc)
-#      shell: echo 'export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH' >> ~/.zshrc
-
-
-    - name: Install oh-my-zsh
-      git: repo=https://github.com/robbyrussell/oh-my-zsh dest=~/.oh-my-zsh
-      sudo: false
-      when: install_oh_my_zsh == true
-      tags: install_oh_my_zsh
-
-
     ### OSX SETTINGS
 
     - name: Configure System Settings
       script: scripts/system_settings.sh
       become: true
-
 
 
     ### DOTFILES
