@@ -3,96 +3,56 @@
   vars:
 #Homebrew Applications
     applications:
-      #- 1password
-      #- adium
-      #- alfred # | http://www.alfredapp.com
-      #- anvil # run sites locally
-      #- apptrap # remove associated prefs when uninstalling
       #- appzapper # uninstaller
       - atom # sublime without annoying popup | https://atom.io/download/mac
       - asix-ax88179 # Driver for usb ethernet adaptor
       - bbedit
       #- bettertouchtool # window snapping. (maybe Moom is more lightweight?)
-      #- betterzipql # quick look for zips
       - bonjour-browser
       - burn
       #- calibre # berks
-      #- carbon-copy-cloner # backups | https://bombich.com/download
-      #- cheatsheet # know your shortcuts
-      #- dash # totally sick API browser
       #- deeper # (w/ onyx) turn on hidden functions
       #- diffmerge # free visual diq
       #- disk-inventory-x # reclaim space on your expensive-ass Apple SSD | http://www.derlien.com/
-      #- dropbox # a worse Mega Sync
+      - dolphin-dev
       - etcher
-      #- eve # learn your shortcuts
-      #- evernote
       #- fing # network diagnostics
       - filezilla
       - firefox
       - focusatwill
       - flux # get more sleep
       - get-iplayer-automator
-      - github-beta
-      #- google-chrome
-      #- google-drive
+      - github-desktop
+      - google-chrome
       #- gotomeeting
       - handbrake # vid compression
-      #- imageoptim # optimize images
-      #- insomniax
       #- istumbler # network discovery GUI
       - ip-in-menu-bar
       - iterm2
       #- java8
-      #- jumpcut # awesome clipboard
-      #- karabiner # Keyboard customization
+      #- jxplorer
       - keepingyouawake # replaces insomniax & caffeinex
-      #- keka # file archiving
-      #- licecap # GIFs !
-      #- little-snitch # awesome outbound firewall
       #- mactracker # benchmarking
-      #- macvim # a shittier vim
-      #- megasync # a better Dropbox
       #- monolingual # remove unneeded osx lang files
       #- microsoft-teams
       - namebench
-      #- namechanger # rename files in bulk
-      #- nvalt # fast note taking
-      #- onyx # system maintenance
+      - onyx # system maintenance
       - openemu-experimental
-      #- packer # machine images
       - pgadmin4
       - platypus
       - prolific-pl2303
-      #- qlcolorcode # quick look syntax highlighting
-      #- qlimagesize # quick look image dimensions
-      #- qlmarkdown # quick look .md files
-      #- qlstephen # quick look extension-less text files
-      #- rcdefaultapp # set default app for different URLs
       #- ringcentral
       - remote-play # ps4 remote play
-      #- rowanj-gitx # Awesome gitx fork.
-      #- seil # Keyboard customization
-      #- safari-technology-preview
       - sdformatter
       - sequel-pro # FREE SQL GUI!
-      #- shortcat # kill your mouse
       - shuttle # ssh management
       - sonos
-      #- skitch
       #- skype
       - slack
       - spotify
       - subler
-      #- sublime-text3 # (experimental cask) | http://www.sublimetext.com/
-      #- subtitles # auto download subtitles
-      #- thunderbird # email
-      #- tomighty # pomodoro
-      #- torbrowser # be the noise
       - touchswitcher # dock in the touch bar
-      #- tower # another git client
       #- transmission # torrents
-      #- transmit # ftp
       - trash-it
       - tunnelblick-beta # VPN
       #- vmware-fusion8 #Still using Version 8
@@ -105,72 +65,35 @@
       - virtualbox # | https://www.virtualbox.org/
       - virtualbox-extension-pack
       - xld
-      #- xtrafinder # moar Finder!
       #- zoomus # better videoconferences
       - zenmap
-      #- zoomus
 
     install_oh_my_zsh:  false
 
     brew_taps:
       - "homebrew/core"
-      - "caskroom/cask"
-      - "caskroom/drivers"
-      - "caskroom/versions"
+      - "homebrew/cask"
+      - "homebrew/cask-drivers"
+      - "homebrew/cask-versions"
       - "buo/cask-upgrade"
 
     #dotfile_repo_username: glennr # the GH repo where your dotfiles are
 
     brew_utils:
       #- ansible #already installed by ./mac bootstrap script
-      #- autoconf
-      #- autojump # quickly navigate from cmd line
-      #- bash # Bash 4
-      #- boot2docker # for running docker on osx
-      #- bfg # requires java
-      #- brew-cask
       #- cowsay # amazing
       #- coreutils # Install GNU core utilities (those that come with OS X are outdated)
-      #- ctags
-      #- docker # | https://docs.docker.com/installation/mac/
       - dockutil
-      #- ffmpeg
-      #- findutils  # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
       - gandi.cli
-      #- git-lfs
-      #- go
-      #- gpg
-      #- homebrew/dupes/grep # more recent version of OS X grep # ansible bug: https://github.com/ansible/ansible-modules-extras/issues/252
-      #- hub # github
-      #- imagemagick # IDK why, but I always end up needing this beast
-      #- keybase # in alpha at time of writing.
       - mas
-      #- mongodb # a shittier PG
       - mtr # better traceroute
-      #- mysql # required PHP library
       - nmap
-      #- node
-      #- npm
       - openssl # for easyrsa
-      #- packer
-      # - phantomjs
-      #- postgresql # yes and nosql
       - pwgen # password generator
-      #- python
-      #- rbenv # ruby. Just installs binaries - assumes you bring in the dotfiles.
+      #- python@2
       #- readline
-      #- redis
-      #- rename # rename multiple files
-      #- rsync
-      #- ruby-build
       #- sqlite # production rails DB
       #- sshpass
-      #- the_silver_searcher # fast ack-grep
-      #- tmux
-      #- vim
-      #- wget
-      #- zsh
-
 
     dockitems_to_remove:
       - Launchpad
