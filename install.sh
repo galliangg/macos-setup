@@ -38,13 +38,15 @@ set -e
 # sudo -v
 # while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
+# Homebrew will install the command-line tools automatically
+
 # Ensure Apple's command line tools are installed
-if ! command -v cc >/dev/null; then
-  fancy_echo "Installing xcode ..."
-  xcode-select --install
-else
-  fancy_echo "Xcode already installed. Skipping."
-fi
+#if ! command -v cc >/dev/null; then
+#  fancy_echo "Installing xcode ..."
+#  xcode-select --install
+#else
+#  fancy_echo "Xcode already installed. Skipping."
+#fi
 
 # Install Homebrew
 if ! command -v brew >/dev/null; then
@@ -55,20 +57,21 @@ else
 fi
 
 # Install PiP via easy_install
-if ! command -v pip >/dev/null; then
-  fancy_echo "Installing Pip..."
-  easy_install --user pip </dev/null
-  printf 'if [ -f ~/.bashrc ]; then\n  source ~/.bashrc\nfi\n' >> $HOME/.profile
-  printf 'export PATH=$PATH:$HOME/Library/Python/2.7/bin\n' >> $HOME/.bashrc
-  source $HOME/.profile
-else
-  fancy_echo "PiP already installed. Skipping."
-fi
+#if ! command -v pip >/dev/null; then
+#  fancy_echo "Installing Pip..."
+#  easy_install --user pip </dev/null
+#  printf 'if [ -f ~/.bashrc ]; then\n  source ~/.bashrc\nfi\n' >> $HOME/.profile
+#  printf 'export PATH=$PATH:$HOME/Library/Python/2.7/bin\n' >> $HOME/.bashrc
+#  source $HOME/.profile
+#else
+#  fancy_echo "PiP already installed. Skipping."
+#fi
 
 # [Install Ansible](http://docs.ansible.com/intro_installation.html).
 if ! command -v ansible >/dev/null; then
   fancy_echo "Installing Ansible ..."
-  pip install --user --upgrade ansible
+  #pip install --user --upgrade ansible
+  brew install ansible
   sudo mkdir /etc/ansible
   sudo curl -L https://raw.githubusercontent.com/ansible/ansible/devel/examples/ansible.cfg -o /etc/ansible/ansible.cfg
 else

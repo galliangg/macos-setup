@@ -22,7 +22,7 @@
     applications:
       #- appzapper # uninstaller
       - atom # sublime without annoying popup | https://atom.io/download/mac
-      - asix-ax88179 # Driver for usb ethernet adaptor
+      #- asix-ax88179 # Driver for usb ethernet adaptor
       - bbedit
       #- bettertouchtool # window snapping. (maybe Moom is more lightweight?)
       - bonjour-browser
@@ -123,7 +123,7 @@
 
     dockitems_to_persist:
       - name: Safari
-        path: "/Applications/Google Chrome.app"
+        path: "/Applications/Safari.app"
         pos: 1
       - name: Safari Technology Preview
         path: "/Applications/Safari Technology Preview.app"
@@ -169,10 +169,10 @@
       stat: path=/usr/local/bin/brew
       register: brew_installed
 
-    - name: Install Homebrew
-      #shell: ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
-      shell: /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-      when: brew_installed.stat.exists == false
+    #- name: Install Homebrew
+    #  #shell: ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+    #  shell: /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    #  when: brew_installed.stat.exists == false
 
     - name: Install required Homebrew Taps
       shell: brew tap {{ item }}
