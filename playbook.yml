@@ -19,7 +19,7 @@
       - 1037126344 # Apple Configurator 2 (2.7)
 
 #Homebrew Applications
-    applications:
+    applications_v1:
       #- appzapper # uninstaller
       - atom # sublime without annoying popup | https://atom.io/download/mac
       #- asix-ax88179 # Driver for usb ethernet adaptor
@@ -57,7 +57,7 @@
       - openemu-experimental
       - pgadmin4
       - platypus
-      - prolific-pl2303
+      #- prolific-pl2303
       #- ringcentral
       - remote-play # ps4 remote play
       - sdformatter
@@ -122,32 +122,32 @@
       - iTunes
 
     dockitems_to_persist:
+      - name: System Preferences
+        path: "/Applications/System Preferences.app"
+        pos: 1
       - name: Safari
         path: "/Applications/Safari.app"
-        pos: 1
-      - name: Safari Technology Preview
-        path: "/Applications/Safari Technology Preview.app"
         pos: 2
+      - name: Firefox
+        path: "/Applications/Firefox.app"
+        pos: 3
       - name: Mail
         path: /Applications/Mail.app
-        pos: 3
+        pos: 4
       - name: Contacts
         path: /Applications/Contacts.app
-        pos: 4
+        pos: 5
       - name: Calendar
         path: /Applications/Calendar.app
-        pos: 5
+        pos: 6
       - name: Notes
         path: /Applications/Utilities/Notes.app
-        pos: 6
+        pos: 7
       - name: App Store
         path: "/Applications/App Store.app"
-        pos: 7
-      - name: System Applications
-        path: "/Applications/System Applications.app"
         pos: 8
-      - name: VMware Fusion
-        path: "/Applications/VMware Fusion.app"
+      - name: VirtualBox
+        path: /Applications/VirtualBox.app
         pos: 9
       - name: BBEdit
         path: /Applications/BBEdit.app
@@ -195,12 +195,12 @@
     - name: Check for installed apps(casks)
       shell: brew cask list | grep {{ item }}
       register: installed_applications
-      with_items: applications
+      with_items: applications_v1
       ignore_errors: true
 
     - name: Install Apps with brew-cask
       shell: brew cask install {{ item }}
-      with_items: "{{ applications }}"
+      with_items: "{{ applications_v1 }}"
       when: "{{ item not in installed_applications.results|map(attribute='stdout') }}"
 
     ### Dockutil fixing
