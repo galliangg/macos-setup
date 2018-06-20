@@ -212,6 +212,13 @@
     - name: Cleanup after brewing
       shell: brew cleanup
 
+    - name: Check if mas is logged in
+      shell: mas account
+      register: mas_login
+
+    - debug:
+        msg: "Output of mas_login is {{ mas_login }}"
+
     ### Dockutil fixing
 
     - name: Remove all crap from Dock
