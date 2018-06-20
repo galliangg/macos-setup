@@ -196,8 +196,9 @@
         msg: "Output of mas_login stdout is {{ mas_login.stdout }}. mas_login rc is {{ mas_login.rc }}"
 
     - name: Login to mas
-      shell:  mas signin {{ mas_username }} [{{ mas_password}}]
-      when: "'Not signed in' in mas_login.stdout"
+      shell:  mas signin {{ mas_username }} {{ mas_password}}
+      # rc = 0 is logged in, rc = 1 not logged in
+      when: mas_login.rc == 1
 
     - name: Check if mas is logged in
       shell: mas account
