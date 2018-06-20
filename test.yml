@@ -185,7 +185,7 @@
       register: brew_installed
 
     - debug:
-      var: mas_username
+      msg: "mas_username is {{ mas_username }}"
 
     #- name: Install Homebrew
     #  #shell: ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
