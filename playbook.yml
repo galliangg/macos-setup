@@ -36,10 +36,10 @@
       #- fing # network diagnostics
       - filezilla
       - firefox
-      - focusatwill
+      #- focusatwill # Moved to appliacations_v2
       - flux # get more sleep
       - get-iplayer-automator
-      - github-desktop
+      #- github-desktop
       - github # Old name is github-desktop
       - google-chrome
       #- gotomeeting
@@ -80,8 +80,6 @@
       - wireshark
       - vagrant # | https://www.vagrantup.com/downloads.html
       - vagrant-manager #
-      - virtualbox # | https://www.virtualbox.org/
-      - virtualbox-extension-pack
       - xld
       #- zoomus # better videoconferences
       - zenmap
@@ -89,6 +87,9 @@
     applications_v2:
       - asix-ax88179 # Driver for usb ethernet adaptor
       - prolific-pl2303
+      - virtualbox # | https://www.virtualbox.org/
+      - virtualbox-extension-pack
+      #- focusatwill
 
 
     install_oh_my_zsh:  false
