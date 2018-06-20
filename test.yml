@@ -2,13 +2,15 @@
 - hosts: all
   vars:
 #MAS App Store Applications
-    mas_username: !vault |
+    vault_mas_username: !vault |
       $ANSIBLE_VAULT;1.1;AES256
       31343439666132366134613435303033383130343830343137656137386339333333313564666562
       6562386466323063343062333166643233376433333736360a383537353230653535366131343837
       65333135376439303863346234633735663966393265623631393432623534616662623865383738
       3564343561396233650a393764316338313239306465383534633338383432306463653133333230
       35643965326666343833613232613539386233623636633136643262613365366335
+
+    mas_username: {{vault_mas_username}
 
     mas_password: cake
 
@@ -185,7 +187,7 @@
       register: brew_installed
 
     - debug:
-        msg: "mas_username is {{ mas_username }}. mas_password is {{ mas_password }}"
+        msg: "mas_username is {{ mas_username }}. vault_mas_usernamed is {{ vault_mas_username }}"
 
     - name: Check if mas is logged in
       shell: mas account
