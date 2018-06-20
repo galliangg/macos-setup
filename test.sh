@@ -1,22 +1,7 @@
 #!/bin/sh
 
-# Welcome to the galliangg laptop script!
-# Be prepared to turn your OSX box into
-# a development beast.
-#
-# This script bootstraps our OSX laptop to a point where we can run
-# Ansible on localhost. It;
-#  1. Installs
-#    - xcode
-#    - homebrew
-#    - pip
-#    - ansible (via pip) from http://binarynature.blogspot.co.uk/2016/01/install-ansible-on-os-x-el-capitan_30.html
-#    - a few ansible galaxy playbooks (zsh, homebrew, cask etc)
-#  2. Kicks off the ansible playbook
-#    - main.yml
-#
 #  Run this:
-#  sh -c "$(curl -fsSL https://raw.githubusercontent.com/galliangg/macos-setup/master/install.sh)"
+#  sh -c "$(curl -fsSL https://raw.githubusercontent.com/galliangg/macos-setup/master/test.sh)"
 #
 # It will ask you for your sudo password
 
@@ -48,7 +33,6 @@ fi
 # [Install Ansible](http://docs.ansible.com/intro_installation.html).
 if ! command -v ansible >/dev/null; then
   fancy_echo "Installing Ansible ..."
-  #pip install --user --upgrade ansible
   brew install ansible
   sudo mkdir /etc/ansible
   sudo curl -L https://raw.githubusercontent.com/ansible/ansible/devel/examples/ansible.cfg -o /etc/ansible/ansible.cfg
@@ -67,5 +51,5 @@ fancy_echo "Changing to laptop repo dir ..."
 cd macos-setup
 # Run this from the same directory as this README file.
 fancy_echo "Running ansible playbook ..."
-ansible-playbook playbook.yml -i hosts -K
-#ansible-playbook playbook.yml -i hosts
+ansible-playbook test.yml -i hosts -K
+#ansible-playbook playbook.yml -i hosts -K
