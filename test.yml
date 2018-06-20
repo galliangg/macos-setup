@@ -193,7 +193,7 @@
       ignore_errors: true
 
     - debug:
-        msg: "Output of mas_login is {{ mas_login }}"
+        msg: "Output of mas_login is {{ mas_login.stdout }}"
 
     #- name: Install Homebrew
     #  #shell: ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
