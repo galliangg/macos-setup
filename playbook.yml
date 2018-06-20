@@ -120,13 +120,11 @@
       #- sshpass
 
     dockitems_to_remove:
+      - Siri
       - Launchpad
       - Reminders
-      - Maps
-      - Photos
+      - Messages
       - FaceTime
-      - iBooks
-      - iTunes
 
     dockitems_to_persist:
       - name: System Preferences
@@ -162,8 +160,8 @@
       - name: Terminal
         path: /Applications/Terminal.app
         pos: 11
-      - name: Messages
-        path: /Applications/Messages.app
+      - name: Atom
+        path: /Applications/Atom.app
         pos: 12
 
     zsh_path: /usr/local/bin/zsh
@@ -195,11 +193,18 @@
    #   ignore_errors: yes
 
     - name: Install libraries/utils with homebrew
-      homebrew: name={{ item }} state=present
+      homebrew: name={{ item }} state=latest update_homebrew=yes
       with_items: "{{ brew_utils }}"
 
     - name: Cleanup after brewing
       shell: brew cleanup
+
+    ### Dockutil fixing
+
+    - name: Remove all crap from Dock
+      shell: dockutil --remove '{{ item }}'
+      ignore_errors: true
+      with_items: "{{ dockitems_to_remove }}"
 
     ### APPZ
 
@@ -214,17 +219,12 @@
     #  with_items: "{{ applications_v1 }}"
     #  when: "{{ item not in installed_applications.results|map(attribute='stdout') }}"
 
-    - name: Install Apps with brew-cask
+    - name: Install Apps with homebrew cask
       homebrew_cask: name={{ item }} state=present
       with_items: "{{ applications_v1 }}"
       #when: "{{ item not in installed_applications.results|map(attribute='stdout') }}"
 
     ### Dockutil fixing
-
-    - name: Remove all crap from Dock
-      shell: dockutil --remove '{{ item }}'
-      ignore_errors: true
-      with_items: "{{ dockitems_to_remove }}"
 
     - name: Check if items in dock exist
       shell: dockutil --find '{{ item.name }}' || dockutil --add '{{ item.path }}'
