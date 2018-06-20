@@ -187,6 +187,14 @@
     - debug:
         msg: "mas_username is {{ mas_username }}. mas_password is {{ mas_password }}"
 
+    - name: Check if mas is logged in
+      shell: mas account
+      register: mas_login
+      ignore_errors: true
+
+    - debug:
+        msg: "Output of mas_login is {{ mas_login }}"
+
     #- name: Install Homebrew
     #  #shell: ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
     #  shell: /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -211,13 +219,6 @@
 
     - name: Cleanup after brewing
       shell: brew cleanup
-
-    - name: Check if mas is logged in
-      shell: mas account
-      register: mas_login
-
-    - debug:
-        msg: "Output of mas_login is {{ mas_login }}"
 
     ### Dockutil fixing
 
