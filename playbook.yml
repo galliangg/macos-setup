@@ -202,11 +202,11 @@
 
     ### APPZ
 
-    - name: Check for installed apps(casks)
-      shell: brew cask list | grep {{ item }}
-      register: installed_applications
-      with_items: applications_v1
-      ignore_errors: true
+    #- name: Check for installed apps(casks)
+    #  shell: brew cask list | grep {{ item }}
+    #  register: installed_applications
+    #  with_items: applications_v1
+    #  ignore_errors: true
 
     #- name: Install Apps with brew-cask
     #  shell: brew cask install {{ item }}
@@ -216,7 +216,7 @@
     - name: Install Apps with brew-cask
       homebrew_cask: name={{ item }} state=present
       with_items: "{{ applications_v1 }}"
-      when: "{{ item not in installed_applications.results|map(attribute='stdout') }}"
+      #when: "{{ item not in installed_applications.results|map(attribute='stdout') }}"
 
     ### Dockutil fixing
 
