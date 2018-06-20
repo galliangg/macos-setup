@@ -4,17 +4,13 @@ Laptop is a playbook to set up an OS X laptop.
 
 It installs and configures most of the software I (galliangg) use on my Mac.
 
-The script follows this website:
-http://binarynature.blogspot.co.uk/2016/01/install-ansible-on-os-x-el-capitan_30.html
-
-* Install Command Line Developer Tools
-* Install 'pip'
-* Add Python 2.7 user bin directory to the PATH variable
-* Install/Upgrade 'ansible' via 'pip'
+* Install Homebrew (ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" </dev/null)
+* Homebrew will install the Command Line Developer Tools
+* Install/Upgrade Ansible via Homebrew
 * Create the system-wide Ansible directory
 * Copy the default Ansible configuration file to the system-wide Ansible directory
 
-Ansible can then install Homebrew, Homebrew Cask
+Ansible can then install Homebrew Cask
 
 mas from Homebrew will install Mac App Store apps
 
@@ -25,7 +21,7 @@ It can be run multiple times on the same machine safely. It installs, upgrades, 
 
 I've tested it on;
 
-* OS X Yosemite (10.13)
+* macOS High Sierra (10.13.5)
 
 
 ## Installation
@@ -62,7 +58,7 @@ As above, download and bootstrap the script. But stop it before it starts ansibl
 
 1. Change into the cloned repo dir
 
-        cd laptop
+        cd macos-setup
 
 1. Edit playbook.yml and add/remove the apps/utils you want.
 
@@ -70,7 +66,7 @@ As above, download and bootstrap the script. But stop it before it starts ansibl
 
 1. Kick off ansible manually
 
-        ansible-playbook playbook.yml -i hosts --ask-sudo-pass -vvvv
+        ansible-playbook playbook.yml -i hosts -K
 
 You can do this as many times as you like and re-run the `ansible-playbook` command. Ansible is smart enough to skip installed apps, so subsequent runs are super fast.
 
@@ -81,7 +77,8 @@ You can do this as many times as you like and re-run the `ansible-playbook` comm
 
 Apps installed with Homebrew Cask:
 
-  -
+  - 1
+  - 2
 
 There are several more common cask apps listed in the playbook.yml - simply uncomment them to include them in your install.
 
@@ -90,7 +87,8 @@ There are several more common cask apps listed in the playbook.yml - simply unco
 
 Things installed with Homebrew:
 
-  - autoconf
+  - 1
+  - 2
 
 There are several more utils listed in the playbook.yml - simply uncomment them to include them in your install.
 
