@@ -57,9 +57,9 @@
       - openemu-experimental
       - pgadmin4
       - platypus
-      #- prolific-pl2303
       #- ringcentral
       - remote-play # ps4 remote play
+      - scummvm # Monkeys
       - sdformatter
       - sequel-pro # FREE SQL GUI!
       - shuttle # ssh management
@@ -84,6 +84,11 @@
       - xld
       #- zoomus # better videoconferences
       - zenmap
+
+    applications_v2:
+      - asix-ax88179 # Driver for usb ethernet adaptor
+      - prolific-pl2303
+
 
     install_oh_my_zsh:  false
 
