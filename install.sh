@@ -37,17 +37,7 @@ set -e
 # keep-alive to update existing `sudo` time stamp until script has finished
 sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
-
 # Homebrew will install the command-line tools automatically
-
-# Ensure Apple's command line tools are installed
-#if ! command -v cc >/dev/null; then
-#  fancy_echo "Installing xcode ..."
-#  xcode-select --install
-#else
-#  fancy_echo "Xcode already installed. Skipping."
-#fi
-
 # Install Homebrew
 if ! command -v brew >/dev/null; then
   fancy_echo "Installing Homebrew..."
@@ -55,18 +45,6 @@ if ! command -v brew >/dev/null; then
 else
   fancy_echo "Homebrew already installed. Skipping."
 fi
-
-# Install PiP via easy_install
-#if ! command -v pip >/dev/null; then
-#  fancy_echo "Installing Pip..."
-#  easy_install --user pip </dev/null
-#  printf 'if [ -f ~/.bashrc ]; then\n  source ~/.bashrc\nfi\n' >> $HOME/.profile
-#  printf 'export PATH=$PATH:$HOME/Library/Python/2.7/bin\n' >> $HOME/.bashrc
-#  source $HOME/.profile
-#else
-#  fancy_echo "PiP already installed. Skipping."
-#fi
-
 # [Install Ansible](http://docs.ansible.com/intro_installation.html).
 if ! command -v ansible >/dev/null; then
   fancy_echo "Installing Ansible ..."
@@ -77,7 +55,6 @@ if ! command -v ansible >/dev/null; then
 else
   fancy_echo "Ansible already installed. Skipping."
 fi
-
 # Clone the repository to your local drive.
 if [ -d "./macos-setup" ]; then
   fancy_echo "Laptop repo dir exists. Removing ..."
@@ -88,7 +65,6 @@ git clone https://github.com/galliangg/macos-setup.git
 
 fancy_echo "Changing to laptop repo dir ..."
 cd macos-setup
-
 # Run this from the same directory as this README file.
 fancy_echo "Running ansible playbook ..."
 ansible-playbook playbook.yml -i hosts -K
