@@ -193,7 +193,19 @@
       ignore_errors: true
 
     - debug:
-        msg: "Output of mas_login is {{ mas_login.stdout }}"
+        msg: "Output of mas_login stdout is {{ mas_login.stdout }}. mas_login rc is {{ mas_login.rc }}"
+
+    - name: Login to mas
+      shell:  mas signin {{ mas_username }} [{{ mas_password}}]
+      when: "'Not signed in' in mas_login.stdout"
+
+    - name: Check if mas is logged in
+      shell: mas account
+      register: mas_login
+      ignore_errors: true
+
+    - debug:
+        msg: "Output of mas_login stdout is {{ mas_login.stdout }}. mas_login rc is {{ mas_login.rc }}"
 
     #- name: Install Homebrew
     #  #shell: ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
