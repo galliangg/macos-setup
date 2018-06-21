@@ -195,7 +195,10 @@
       register: brew_installed
 
     - debug:
-        msg: "mas_username is {{ mas_username }}. vault_mas_usernamed is {{ vault_mas_username }}"
+        msg: "mas_username is {{ mas_username }}. vault_mas_username is {{ vault_mas_username }}"
+
+    - debug:
+        msg: "mas_password is {{ mas_password }}. vault_mas_password is {{ vault_mas_password }}"
 
     - name: Check if mas is logged in
       shell: mas account
@@ -263,10 +266,14 @@
     #  with_items: "{{ applications_v1 }}"
     #  when: "{{ item not in installed_applications.results|map(attribute='stdout') }}"
 
-    - name: Install Apps with homebrew cask
-      homebrew_cask: name={{ item }} state=present
-      with_items: "{{ applications_v1 }}"
-      #when: "{{ item not in installed_applications.results|map(attribute='stdout') }}"
+#    - name: Install Apps with homebrew cask
+#      homebrew_cask: name={{ item }} state=present
+#      with_items: "{{ applications_v1 }}"
+#      #when: "{{ item not in installed_applications.results|map(attribute='stdout') }}"
+
+    - name: Install required App Store Apps with mas
+      shell: mass install {{ item }}
+      with_items: "{{ mas_applications }}"
 
     ### Dockutil fixing
 
