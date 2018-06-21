@@ -272,7 +272,7 @@
 #      #when: "{{ item not in installed_applications.results|map(attribute='stdout') }}"
 
     - name: Install required App Store Apps with mas
-      shell: mass install {{ item }}
+      shell: mas install {{ item }}
       with_items: "{{ mas_applications }}"
 
     ### Dockutil fixing
