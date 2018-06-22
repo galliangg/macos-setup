@@ -19,6 +19,10 @@
 #  sh -c "$(curl -fsSL https://raw.githubusercontent.com/galliangg/macos-setup/master/install.sh)"
 #
 # It will ask you for your sudo password
+#
+# Ansible Vault cli command
+# ansible-vault encrypt_string --name 'ansible_var_name' secret_var
+#
 
 fancy_echo() {
   local fmt="$1"; shift

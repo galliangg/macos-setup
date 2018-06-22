@@ -18,7 +18,7 @@
       - 883878097 # Server (5.6.1)
       - 1037126344 # Apple Configurator 2 (2.7)
 
-#Homebrew Applications
+#Homebrew Cask Applications
     applications_v1:
       #- appzapper # uninstaller
       - atom # sublime without annoying popup | https://atom.io/download/mac
@@ -36,7 +36,7 @@
       #- fing # network diagnostics
       - filezilla
       - firefox
-      #- focusatwill # Moved to appliacations_v2
+      - focusatwill
       - flux # get more sleep
       - get-iplayer-automator
       #- github-desktop
@@ -89,8 +89,6 @@
       - prolific-pl2303
       - virtualbox # | https://www.virtualbox.org/
       - virtualbox-extension-pack
-      #- focusatwill
-
 
     install_oh_my_zsh:  false
 
@@ -107,6 +105,7 @@
       - ansible #already installed by ./mac bootstrap script
       #- cowsay # amazing
       #- coreutils # Install GNU core utilities (those that come with OS X are outdated)
+      - vitorgalvao/tiny-scripts/cask-repair # https://github.com/Homebrew/homebrew-cask/blob/master/CONTRIBUTING.md#updating-a-cask
       - dockutil
       - gandi.cli
       - mas
