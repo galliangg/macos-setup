@@ -1,0 +1,74 @@
+---
+- hosts: all
+  vars:
+#MAS App Store Applications
+    vault_mas_username: !vault |
+      $ANSIBLE_VAULT;1.1;AES256
+      31343439666132366134613435303033383130343830343137656137386339333333313564666562
+      6562386466323063343062333166643233376433333736360a383537353230653535366131343837
+      65333135376439303863346234633735663966393265623631393432623534616662623865383738
+      3564343561396233650a393764316338313239306465383534633338383432306463653133333230
+      35643965326666343833613232613539386233623636633136643262613365366335
+
+    vault_mas_password: !vault |
+      $ANSIBLE_VAULT;1.1;AES256
+      66633162643963636463313066386631333536643033623637663263623735643963643564386436
+      6138323833333930373535366432356465623163323336360a396265666633663139303539373865
+      39323630643634373135633564336638383763366563343864613766333939323133323837626436
+      6139643634313566370a356433383134623666353930353838346431653836363765663738313032
+      3531
+
+    mas_username: "{{ vault_mas_username }}"
+
+    mas_password: "{{ vault_mas_password }}"
+
+    mas_applications:
+      #- 409201541 # Pages (7.0.1)
+      #- 409203825 # Numbers (5.0.1)
+      #- 409183694 # Keynote (8.0.1)
+      #- 682658836 # GarageBand (10.2.0)
+      #- 408981434 # iMovie (10.1.9)
+      #- 1295203466 # Microsoft Remote Desktop (10.1.8)
+      - 1381004916 # Discovery (2.0.1)
+      - 425424353 # The Unarchiver (3.11.6)
+      #- 897118787 # Shazam (1.2.5)
+      - 510620098 # MediaInfo (18.05)
+      #- 549083868 # Display Menu (2.2.3)
+      ##- 823766827 # OneDrive (18.065.0329)
+      #- 883878097 # Server (5.6.1)
+      #- 1037126344 # Apple Configurator 2 (2.7)
+
+    home: "{{ lookup('env','HOME') }}"
+
+  tasks:
+
+    - debug:
+        msg: "mas_username is {{ mas_username }}. vault_mas_username is {{ vault_mas_username }}"
+
+    - debug:
+        msg: "mas_password is {{ mas_password }}. vault_mas_password is {{ vault_mas_password }}"
+
+    - name: Check if mas is logged in
+      shell: mas account
+      register: mas_login
+      ignore_errors: true
+
+    - debug:
+        msg: "Output of mas_login stdout is {{ mas_login.stdout }}. mas_login rc is {{ mas_login.rc }}"
+
+    - name: Login to mas
+      shell:  mas signin {{ mas_username }} {{ mas_password}}
+      # rc = 0 is logged in, rc = 1 not logged in
+      when: mas_login.rc == 1
+
+    - name: Check if mas is logged in
+      shell: mas account
+      register: mas_login
+      ignore_errors: true
+
+    - debug:
+        msg: "Output of mas_login stdout is {{ mas_login.stdout }}. mas_login rc is {{ mas_login.rc }}"
+
+    - name: Install required App Store Apps with mas
+      shell: mas install {{ item }}
+      with_items: "{{ mas_applications }}"

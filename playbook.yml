@@ -20,9 +20,11 @@
 
 #Homebrew Cask Applications
     applications_v1:
+      - font-et-book # bembo equivalent
+      - font-tex-gyre-pagella # TEX Gyre Pagella - based on URW Palladio
       #- appzapper # uninstaller
       - atom # sublime without annoying popup | https://atom.io/download/mac
-      #- asix-ax88179 # Driver for usb ethernet adaptor
+      #- asix-ax88179 # Driver for usb ethernet adaptor NEEDS PERMISSIONS TO OPEN!
       - bbedit
       #- bettertouchtool # window snapping. (maybe Moom is more lightweight?)
       - bonjour-browser
@@ -97,7 +99,8 @@
       - homebrew/cask
       - homebrew/cask-drivers
       - homebrew/cask-versions
-      - buo/cask-upgrade
+      - homebrew/cask-fonts
+      # - buo/cask-upgrade # brew cask update now exists
 
     #dotfile_repo_username: glennr # the GH repo where your dotfiles are
 
