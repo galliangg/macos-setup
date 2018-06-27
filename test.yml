@@ -225,6 +225,7 @@
       shell:  mas signin {{ mas_username }} {{ mas_password}}
       # rc = 0 is logged in, rc = 1 not logged in
       when: mas_login.rc == 1
+      ignore_errors: true
 
     - name: Check if mas is logged in
       shell: mas account
