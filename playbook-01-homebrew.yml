@@ -15,7 +15,7 @@
 
     brew_utils:
       - ansible #already installed by ./mac bootstrap script
-      - vitorgalvao/tiny-scripts/cask-repair # https://github.com/Homebrew/homebrew-cask/blob/master/CONTRIBUTING.md#updating-a-cask
+      - cask-repair # https://github.com/Homebrew/homebrew-cask/blob/master/CONTRIBUTING.md#updating-a-cask
       - dockutil
       - mas
       - pwgen # password generator
