@@ -1,4 +1,8 @@
-export PATH=$PATH:$HOME/Library/Python/2.7/bin
+# Managed by Ansible!
+#
+# Add Homebrew sbin directory to $PATH
+export PATH="/usr/local/sbin:$PATH"
+#
 # Add bash aliases.
 if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases
@@ -11,3 +15,4 @@ shopt -s histappend
 # Append commands to the history every time a prompt is shown,
 # instead of after closing the session.
 PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+#
