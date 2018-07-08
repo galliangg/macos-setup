@@ -94,7 +94,7 @@
 
     applications_v2:
       - asix-ax88179 # Driver for usb ethernet adaptor
-      - prolific-pl2303
+      - prolific-pl2303 # Driver for usb serial adaptor
       - virtualbox # | https://www.virtualbox.org/
       - virtualbox-extension-pack
 
