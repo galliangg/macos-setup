@@ -1,0 +1,79 @@
+---
+- hosts: all
+  vars:
+
+    brew_utils:
+      - dockutil
+
+    dockitems_to_remove:
+      - Siri
+      - Launchpad
+      - Reminders
+      - Messages
+      - FaceTime
+
+    dockitems_to_persist:
+      - name: System Preferences
+        path: "/Applications/System Preferences.app"
+        pos: 1
+      - name: Safari
+        path: "/Applications/Safari.app"
+        pos: 2
+      - name: Firefox
+        path: "/Applications/Firefox.app"
+        pos: 3
+      - name: Mail
+        path: /Applications/Mail.app
+        pos: 4
+      - name: Contacts
+        path: /Applications/Contacts.app
+        pos: 5
+      - name: Calendar
+        path: /Applications/Calendar.app
+        pos: 6
+      - name: Notes
+        path: /Applications/Utilities/Notes.app
+        pos: 7
+      - name: App Store
+        path: "/Applications/App Store.app"
+        pos: 8
+      - name: VirtualBox
+        path: /Applications/VirtualBox.app
+        pos: 9
+      - name: BBEdit
+        path: /Applications/BBEdit.app
+        pos: 10
+      - name: Terminal
+        path: /Applications/Terminal.app
+        pos: 11
+      - name: Atom
+        path: /Applications/Atom.app
+        pos: 12
+
+  tasks:
+
+    - name: Check Homebrew is installed
+      stat: path=/usr/local/bin/brew
+      register: brew_installed
+
+    - name: Install libraries/utils with homebrew
+      homebrew: name={{ item }} state=latest update_homebrew=yes
+      with_items: "{{ brew_utils }}"
+
+    - name: Cleanup after brewing
+      shell: brew cleanup
+
+    ### Dockutil fixing
+
+    - name: Remove all crap from Dock
+      shell: dockutil --remove '{{ item }}'
+      ignore_errors: true
+      with_items: "{{ dockitems_to_remove }}"
+
+    - name: Check if items in dock exist
+      shell: dockutil --find '{{ item.name }}' || dockutil --add '{{ item.path }}'
+      with_items: "{{ dockitems_to_persist }}"
+
+    - name: Fix order
+      shell: dockutil --move '{{ item.name }}' --position {{ item.pos }}
+      with_items: "{{ dockitems_to_persist }}"

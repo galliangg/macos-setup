@@ -1,0 +1,64 @@
+---
+- hosts: all
+  vars:
+
+    brew_taps:
+      - thoughtbot/formulae # for rcm
+
+    brew_utils:
+      - rcm
+
+    home: "{{ lookup('env','HOME') }}"
+
+  tasks:
+
+    - name: Install rcm Homebrew Tap
+      homebrew_tap: name={{ item }} state=present
+      with_items: "{{ brew_taps }}"
+
+    - name: Install rcm with homebrew
+      homebrew: name={{ item }} state=latest update_homebrew=yes
+      with_items: "{{ brew_utils }}"
+
+    - name: Cleanup after brewing
+      shell: brew cleanup
+
+    ### DOTFILES
+
+# "~/Library/Mobile Documents/com~apple~CloudDocs/" # iCloud Drive folder
+# ~/Library/Mobile\ Documents/com~apple~CloudDocs/
+
+#
+#    - name: Check ~/src dir exists
+#      stat: path=~/src/
+#      register: src_dir_exists
+#
+#    - name: Assures ~/src dir exists
+#      file: path=~/src state=directory
+#
+#    - name: Assures ~/src/thoughtbot dir exists
+#      file: path=~/src/thoughtbot state=directory
+#
+#    - name: Install thoughtbot/dotfiles
+#      git: repo=https://github.com/thoughtbot/dotfiles.git dest=~/src/thoughtbot/dotfiles
+#
+#    - name: Link ~/dotfiles to ~/src/thoughtbot/dotfiles
+#      file: dest=~/dotfiles
+#            src=~/src/thoughtbot/dotfiles
+#            state=link
+#            force=yes
+#
+#    - name: Assures ~/src/{{ dotfile_repo_username }} dir exists
+#      file: path=~/src/{{ dotfile_repo_username }} state=directory
+#
+#    - name: Install {{ dotfile_repo_username }}/dotfiles
+#      git: repo=https://github.com/{{ dotfile_repo_username }}/dotfiles.git dest=~/src/{{ dotfile_repo_username }}/dotfiles
+#
+#    - name: Link ~/dotfiles-local to ~/src/{{ dotfile_repo_username }}/dotfiles
+#      file: dest=~/dotfiles-local
+#            src=~/src/{{ dotfile_repo_username }}/dotfiles
+#            state=link
+#            force=yes
+#
+#    - name: Generate dotfiles with rcup
+#      shell: env RCRC=~/dotfiles/rcrc rcup
