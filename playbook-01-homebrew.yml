@@ -1,0 +1,49 @@
+---
+- hosts: all
+  vars:
+#This playbook is for Homebrew only
+    brew_taps:
+      - homebrew/core
+      - homebrew/versions
+      - homebrew/cask
+      - homebrew/cask-drivers
+      - homebrew/cask-versions
+      - homebrew/cask-fonts
+      - buo/cask-upgrade # for brew cu
+      - vitorgalvao/tiny-scripts # for cask-repair
+      - thoughtbot/formulae # for rcm
+
+    brew_utils:
+      - ansible #already installed by ./mac bootstrap script
+      - cask-repair # https://github.com/Homebrew/homebrew-cask/blob/master/CONTRIBUTING.md#updating-a-cask
+      - dockutil
+      - mas
+      - pwgen # password generator
+      #- sshpass
+
+    brew_utils_extra:
+      - gandi.cli
+      - john-jumbo
+      - mtr # better traceroute
+      - nmap
+      - pwgen # password generator
+      #- sshpass
+
+  tasks:
+
+    - name: Install required Homebrew Taps
+      homebrew_tap: name={{ item }} state=present
+      with_items: "{{ brew_taps }}"
+
+    ### UTILS
+   # - name: Create sshpass v1.06 formula
+   #   shell: brew create --force https://sourceforge.net/projects/sshpass/files/sshpass/1.06/sshpass-1.06.tar.gz
+   #   ignore_errors: yes
+
+    - name: Install libraries/utils with homebrew
+      homebrew: name={{ item }} state=latest update_homebrew=yes
+      with_items: "{{ brew_utils }}"
+
+    - name: Cleanup after brewing
+      shell: brew cleanup
+#

@@ -102,11 +102,14 @@
 
     brew_taps:
       - homebrew/core
+      - homebrew/versions
       - homebrew/cask
       - homebrew/cask-drivers
       - homebrew/cask-versions
       - homebrew/cask-fonts
-      # - buo/cask-upgrade # brew cask update now exists
+      - buo/cask-upgrade # for brew cu
+      - vitorgalvao/tiny-scripts # for cask-repair
+      - thoughtbot/formulae # for rcm
 
     #dotfile_repo_username: glennr # the GH repo where your dotfiles are
 
@@ -114,7 +117,7 @@
       - ansible #already installed by ./mac bootstrap script
       #- cowsay # amazing
       #- coreutils # Install GNU core utilities (those that come with OS X are outdated)
-      - vitorgalvao/tiny-scripts/cask-repair # https://github.com/Homebrew/homebrew-cask/blob/master/CONTRIBUTING.md#updating-a-cask
+      - cask-repair # https://github.com/Homebrew/homebrew-cask/blob/master/CONTRIBUTING.md#updating-a-cask
       - dockutil
       - gandi.cli
       - mas
