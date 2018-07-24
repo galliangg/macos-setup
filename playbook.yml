@@ -102,7 +102,6 @@
 
     brew_taps:
       - homebrew/core
-      - homebrew/versions
       - homebrew/cask
       - homebrew/cask-drivers
       - homebrew/cask-versions
