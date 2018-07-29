@@ -89,6 +89,9 @@
       - homebrew/cask-drivers
       - homebrew/cask-versions
       - homebrew/cask-fonts
+      - buo/cask-upgrade # for brew cu
+      - vitorgalvao/tiny-scripts # for cask-repair
+      - thoughtbot/formulae # for rcm
 
     home: "{{ lookup('env','HOME') }}"
 
