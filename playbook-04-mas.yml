@@ -1,0 +1,92 @@
+---
+- hosts: all
+  vars:
+    #ansible_become: yes  # use sudo
+    ansible_become_method: sudo
+    ansible_become_password: "{{ vault_ansible_become_password }}"
+
+    vault_ansible_become_password: !vault |
+      $ANSIBLE_VAULT;1.1;AES256
+      39373739653538343362373661633130393030373837623131636562326638613961326235333839
+      3066393761613534616163353364663237306333336630330a323062363761653165613430373030
+      37613764366261343436373365613437313936313565366661393730333438356138346463396666
+      6334633364656137360a393832633663643165363930373137353936326563383462366562636461
+      3530
+
+#MAS App Store Applications
+    vault_mas_username: !vault |
+      $ANSIBLE_VAULT;1.1;AES256
+      37303938663132313465643538656334633862656235666234353239663534356131653932366435
+      3265613237353266326335353339636534333133333632330a323565656132316161666435306338
+      62326532336234386338316333336562373536626363653635326631303836646164623662343765
+      3461313361613838330a613636666236316637353037653264653937316364653734303436306232
+      65633631663338386636616630663432386333363132306138303238353963663433
+
+    vault_mas_password: !vault |
+      $ANSIBLE_VAULT;1.1;AES256
+      63623466313763613934616666363561663837333336353536646338653162663133663564303033
+      3638646265396531643562623735383830396161376338330a333061363065313434353766626335
+      33343431343331623363613364616134383730366537623339663934643961663665643963313564
+      3433333034353934390a633463653433363065656661633930326530376338313231366437363439
+      3739
+
+    mas_username: "{{ vault_mas_username }}"
+
+    mas_password: "{{ vault_mas_password }}"
+
+    mas_applications:
+      #- 409201541 # Pages (7.0.1)
+      #- 409203825 # Numbers (5.0.1)
+      #- 409183694 # Keynote (8.0.1)
+      #- 682658836 # GarageBand (10.2.0)
+      #- 408981434 # iMovie (10.1.9)
+      - 1295203466 # Microsoft Remote Desktop (10.1.8)
+      - 1381004916 # Discovery (2.0.1)
+      - 425424353 # The Unarchiver (3.11.6)
+      - 897118787 # Shazam (1.2.5)
+      - 510620098 # MediaInfo (18.05)
+      #- 549083868 # Display Menu (2.2.3)
+      ##- 823766827 # OneDrive (18.065.0329)
+      #- 883878097 # Server (5.6.1)
+      #- 1037126344 # Apple Configurator 2 (2.7)
+
+  tasks:
+
+    - name: Check Homebrew is installed
+      stat: path=/usr/local/bin/brew
+      register: brew_installed
+
+    - debug:
+        msg: "mas_username is {{ mas_username }}. vault_mas_username is {{ vault_mas_username }}"
+
+    - debug:
+        msg: "mas_password is {{ mas_password }}. vault_mas_password is {{ vault_mas_password }}"
+
+# MAS status
+    - name: Check if mas is logged in
+      shell: mas account
+      register: mas_login
+      ignore_errors: true
+
+    - debug:
+        msg: "Output of mas_login stdout is {{ mas_login.stdout }}. mas_login rc is {{ mas_login.rc }}"
+
+    - name: Login to mas
+      shell:  mas signin {{ mas_username }} {{ mas_password}}
+      # rc = 0 is logged in, rc = 1 not logged in
+      when: mas_login.rc != 0
+      ignore_errors: true
+
+    - name: Check if mas is logged in
+      shell: mas account
+      register: mas_login
+      ignore_errors: true
+
+    - debug:
+        msg: "Output of mas_login stdout is {{ mas_login.stdout }}. mas_login rc is {{ mas_login.rc }}"
+
+    ### APPZ
+
+    - name: Install required App Store Apps with mas
+      shell: mas install {{ item }}
+      with_items: "{{ mas_applications }}"
