@@ -12,7 +12,7 @@
       #- asix-ax88179 # Driver for usb ethernet adaptor NEEDS PERMISSIONS TO OPEN!
       - bbedit
       #- bettertouchtool # window snapping. (maybe Moom is more lightweight?)
-      - bonjour-browser
+      #- bonjour-browser replaced with discovery in App Store
       - burn
       #- calibre # berks
       #- deeper # (w/ onyx) turn on hidden functions
@@ -98,7 +98,10 @@
       homebrew_tap: name={{ item }} state=present
       with_items: "{{ brew_taps }}"
 
-    - name: Install Apps with homebrew cask
+    - name: Install Apps V1 with homebrew cask
       homebrew_cask: name={{ item }} state=present
       with_items: "{{ applications_v1 }}"
-#
+
+    - name: Install Apps V2 with homebrew cask
+      homebrew_cask: name={{ item }} state=present
+      with_items: "{{ applications_v2 }}"

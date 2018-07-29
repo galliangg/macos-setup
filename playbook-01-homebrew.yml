@@ -4,7 +4,6 @@
 #This playbook is for Homebrew only
     brew_taps:
       - homebrew/core
-      - homebrew/versions
       - homebrew/cask
       - homebrew/cask-drivers
       - homebrew/cask-versions
@@ -26,7 +25,7 @@
       - john-jumbo
       - mtr # better traceroute
       - nmap
-      - pwgen # password generator
+      - openssl # for easyrsa
       #- sshpass
 
   tasks:
@@ -40,10 +39,13 @@
    #   shell: brew create --force https://sourceforge.net/projects/sshpass/files/sshpass/1.06/sshpass-1.06.tar.gz
    #   ignore_errors: yes
 
-    - name: Install libraries/utils with homebrew
+    - name: Install brew_utils with homebrew
       homebrew: name={{ item }} state=latest update_homebrew=yes
       with_items: "{{ brew_utils }}"
 
+    - name: Install brew_utils_extra with homebrew
+      homebrew: name={{ item }} state=latest update_homebrew=yes
+      with_items: "{{ brew_utils_extra }}"
+
     - name: Cleanup after brewing
       shell: brew cleanup
-#

@@ -40,10 +40,10 @@
       #- 409183694 # Keynote (8.0.1)
       #- 682658836 # GarageBand (10.2.0)
       #- 408981434 # iMovie (10.1.9)
-      #- 1295203466 # Microsoft Remote Desktop (10.1.8)
+      - 1295203466 # Microsoft Remote Desktop (10.1.8)
       - 1381004916 # Discovery (2.0.1)
       - 425424353 # The Unarchiver (3.11.6)
-      #- 897118787 # Shazam (1.2.5)
+      - 897118787 # Shazam (1.2.5)
       - 510620098 # MediaInfo (18.05)
       #- 549083868 # Display Menu (2.2.3)
       ##- 823766827 # OneDrive (18.065.0329)
@@ -131,7 +131,10 @@
       - homebrew/cask
       - homebrew/cask-drivers
       - homebrew/cask-versions
-      #- buo/cask-upgrade
+      - homebrew/cask-fonts
+      - buo/cask-upgrade # for brew cu
+      - vitorgalvao/tiny-scripts # for cask-repair
+      - thoughtbot/formulae # for rcm
 
     #dotfile_repo_username: glennr # the GH repo where your dotfiles are
 
@@ -146,9 +149,6 @@
       - nmap
       - openssl # for easyrsa
       - pwgen # password generator
-      #- python@2
-      #- readline
-      #- sqlite # production rails DB
       #- sshpass
 
     dockitems_to_remove:

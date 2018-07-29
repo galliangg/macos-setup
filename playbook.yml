@@ -25,7 +25,7 @@
 #Homebrew Cask Applications
     applications_v1:
       - font-et-book # bembo equivalent
-      #- font-tex-gyre-pagella # TEX Gyre Pagella - based on URW Palladio
+      - font-tex-gyre-pagella # TEX Gyre Pagella - based on URW Palladio
       - font-fanwood-text
       - font-goudy-bookletter1911
       #- appzapper # uninstaller
@@ -55,7 +55,7 @@
       #- istumbler # network discovery GUI
       - ip-in-menu-bar
       - iterm2
-      #- java8
+      - java8
       #- jxplorer
       - keepingyouawake # replaces insomniax & caffeinex
       #- mactracker # benchmarking
