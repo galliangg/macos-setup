@@ -124,9 +124,7 @@
       - nmap
       - openssl # for easyrsa
       - pwgen # password generator
-      #- python@2
-      #- readline
-      #- sqlite # production rails DB
+      - rcm
       #- sshpass
 
     dockitems_to_remove:
