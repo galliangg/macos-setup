@@ -39,10 +39,10 @@
       - shuttle # ssh management
       - wireshark
       - zenmap
-      - virtualbox # | https://www.virtualbox.org/
-      - virtualbox-extension-pack
-      - vagrant # | https://www.vagrantup.com/downloads.html
-      - vagrant-manager
+      #- virtualbox # | https://www.virtualbox.org/ Doesnt install correctly with ansible
+      #- virtualbox-extension-pack
+      #- vagrant # | https://www.vagrantup.com/downloads.html
+      #- vagrant-manager
 
 
     applications_v2:
