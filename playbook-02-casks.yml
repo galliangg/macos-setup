@@ -1,110 +1,97 @@
 ---
-- hosts: all
+- hosts: localhost
   vars:
 #Homebrew Cask Applications
-    applications_v1:
-      - font-et-book # bembo equivalent
-      - font-tex-gyre-pagella # TEX Gyre Pagella - based on URW Palladio
-      - font-fanwood-text
-      - font-goudy-bookletter1911
-      #- appzapper # uninstaller
+    vital:
       - atom # sublime without annoying popup | https://atom.io/download/mac
-      #- asix-ax88179 # Driver for usb ethernet adaptor NEEDS PERMISSIONS TO OPEN!
-      - bbedit
-      #- bettertouchtool # window snapping. (maybe Moom is more lightweight?)
-      #- bonjour-browser replaced with discovery in App Store
-      - burn
-      #- calibre # berks
-      #- deeper # (w/ onyx) turn on hidden functions
-      #- diffmerge # free visual diq
-      #- disk-inventory-x # reclaim space on your expensive-ass Apple SSD | http://www.derlien.com/
-      - dolphin-dev
-      - etcher
-      #- fing # network diagnostics
+      - github # Old name is github-desktop
+      - ip-in-menu-bar
+      - keepingyouawake # replaces insomniax & caffeinex
+      - balenaetcher
       - filezilla
-      - firefox
+
+    mindfullness:
       - focusatwill
       - flux # get more sleep
+
+    video:
       - get-iplayer-automator
-      #- github-desktop
-      - github # Old name is github-desktop
-      - google-chrome
-      #- gotomeeting
       - handbrake # vid compression
-      #- istumbler # network discovery GUI
-      - ip-in-menu-bar
-      - iterm2
-      #- java8
-      #- jxplorer
-      - keepingyouawake # replaces insomniax & caffeinex
-      #- mactracker # benchmarking
-      #- monolingual # remove unneeded osx lang files
-      - namebench
-      - onyx # system maintenance
-      - openemu-experimental
-      - pgadmin4
-      - platypus
-      - sony-remoteplay # ps4 remote play
-      - scummvm # Monkeys
-      - sdformatter
-      - sequel-pro # FREE SQL GUI!
-      - shuttle # ssh management
-      - sonos
-      - slack
-      - spotify
       - subler
-      - touchswitcher # dock in the touch bar
-      #- transmission # torrents
-      - trash-it
-      - tunnelblick-beta # VPN
       - vlc
-      - whatsapp
-      - wineskin-winery
-      - wireshark
-      - vagrant # | https://www.vagrantup.com/downloads.html
-      - vagrant-manager #
       - xld
+
+    fonts:
+      - font-et-book # bembo equivalent
+      - font-tex-gyre-pagella # TEX Gyre Pagella - based on URW Palladio
+      - font-fanwood-text # Fanwood Text is a revival of Fairfield, the typeface first published in 1940 and designed by Rudolph Ruzicka
+      - font-goudy-bookletter1911 # Based on Frederic Goudy’s Kennerley Oldstyle
+
+    others:
+      - sony-ps4-remote-play # ps4 remote play
+      - philips-hue-sync
+      - scummvm  # Monkeys
+      - whatsapp
+      - spotify
+
+    the_rest:
+      - firefox
+      - shuttle # ssh management
+      - wireshark
       - zenmap
+      - virtualbox # | https://www.virtualbox.org/
+      - virtualbox-extension-pack
+      - vagrant # | https://www.vagrantup.com/downloads.html
+      - vagrant-manager
+
 
     applications_v2:
       - asix-ax88179 # Driver for usb ethernet adaptor
       - prolific-pl2303 # Driver for usb serial adaptor
-      - virtualbox # | https://www.virtualbox.org/
-      - virtualbox-extension-pack
 
-    applications_work:
-      #- google-chrome
-      #- gotomeeting
-      #- java8
-      #- microsoft-teams
-      #- ringcentral
-      #- skype
-      #- vmware-fusion8 #Still using Version 8
-      #- zoomus # better videoconferences
-
-
-
-    brew_taps:
-      - homebrew/cask
-      - homebrew/cask-drivers
-      - homebrew/cask-versions
-      - homebrew/cask-fonts
-      - buo/cask-upgrade # for brew cu
-      - vitorgalvao/tiny-scripts # for cask-repair
-      - thoughtbot/formulae # for rcm
+    brew_taps: # Make sure casks work
+    - homebrew/core
+    - homebrew/services
+    - homebrew/cask
+    - homebrew/cask-drivers
+    - homebrew/cask-eid
+    - homebrew/cask-fonts
+    - homebrew/cask-versions
+    - buo/cask-upgrade  # for brew cu
 
     home: "{{ lookup('env','HOME') }}"
 
   tasks:
-
     - name: Install required Homebrew Taps
       homebrew_tap: name={{ item }} state=present
       with_items: "{{ brew_taps }}"
 
-    - name: Install Apps V1 with homebrew cask
-      homebrew_cask: name={{ item }} state=present
-      with_items: "{{ applications_v1 }}"
+    - name: Install vital apps with homebrew cask
+      homebrew_cask:
+        name: "{{ vital }}"
+        state: present
 
-    - name: Install Apps V2 with homebrew cask
-      homebrew_cask: name={{ item }} state=present
-      with_items: "{{ applications_v2 }}"
+    - name: Install mindfullness apps with homebrew cask
+      homebrew_cask:
+        name: "{{ mindfullness }}"
+        state: present
+
+    - name: Install video apps with homebrew cask
+      homebrew_cask:
+        name: "{{ video }}"
+        state: present
+
+    - name: Install fonts with homebrew cask
+      homebrew_cask:
+        name: "{{ fonts }}"
+        state: present
+
+    - name: Install others apps with homebrew cask
+      homebrew_cask:
+        name: "{{ others }}"
+        state: present
+
+    - name: Install the_rest apps with homebrew cask
+      homebrew_cask:
+        name: "{{ the_rest }}"
+        state: present

@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  gather_facts: no
+#  become: true
+#    This Order is Important!
+- import_playbook: playbook-01-homebrew.yml
+- import_playbook: playbook-02-casks.yml

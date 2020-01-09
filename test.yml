@@ -233,7 +233,7 @@
       with_items: "{{ brew_utils }}"
 
     - name: Cleanup after brewing
-      shell: brew cleanup
+      shell: brew cleanup -s 
 
 # MAS status
     - name: Check if mas is logged in

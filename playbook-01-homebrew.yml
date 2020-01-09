@@ -1,51 +1,54 @@
 ---
-- hosts: all
+- hosts: localhost
   vars:
 #This playbook is for Homebrew only
-    brew_taps:
-      - homebrew/core
-      - homebrew/cask
-      - homebrew/cask-drivers
-      - homebrew/cask-versions
-      - homebrew/cask-fonts
-      - buo/cask-upgrade # for brew cu
-      - vitorgalvao/tiny-scripts # for cask-repair
-      - thoughtbot/formulae # for rcm
+  brew_taps:
+    - homebrew/core
+    - homebrew/services
+    - homebrew/cask
+    - homebrew/cask-drivers
+    - homebrew/cask-eid
+    - homebrew/cask-fonts
+    - homebrew/cask-versions
+    - buo/cask-upgrade  # for brew cu
+    - thoughtbot/formulae  # for rcm
+    - vitorgalvao/tiny-scripts # for cask-repair
+    - gerbera/gerbera # for gerbera
 
-    brew_utils:
-      - ansible #already installed by ./mac bootstrap script
-      - cask-repair # https://github.com/Homebrew/homebrew-cask/blob/master/CONTRIBUTING.md#updating-a-cask
-      - dockutil
-      - mas
-      - pwgen # password generator
-      #- sshpass
-
-    brew_utils_extra:
-      - gandi.cli
-      - john-jumbo
-      - mtr # better traceroute
-      - nmap
-      - openssl # for easyrsa
-      #- sshpass
+  brew_utils:
+    - ansible #already installed by ./mac bootstrap script
+    - cask-repair # https://github.com/Homebrew/homebrew-cask/blob/master/CONTRIBUTING.md#updating-a-cask
+    - dockutil
+    - mas
+    - pwgen # password generator
+    - git
+    - libdvdcss
+    - mas
+    - mtr
+    - nmap
+    - pwgen
+    - rcm
+#   - sshpass
+    - trash
+    - youtube-dl
 
   tasks:
+  - name: Install homebrew taps from brew_taps
+    homebrew_tap:
+      name: "{{ item }}"
+      state: present
+    with_items: "{{ brew_taps }}"
 
-    - name: Install required Homebrew Taps
-      homebrew_tap: name={{ item }} state=present
-      with_items: "{{ brew_taps }}"
+  - name: Install homebrew packages from brew_utils
+    homebrew:
+      name: "{{ brew_utils }}"
+      state: latest
+      update_homebrew: yes
 
-    ### UTILS
-   # - name: Create sshpass v1.06 formula
-   #   shell: brew create --force https://sourceforge.net/projects/sshpass/files/sshpass/1.06/sshpass-1.06.tar.gz
-   #   ignore_errors: yes
-
-    - name: Install brew_utils with homebrew
-      homebrew: name={{ item }} state=latest update_homebrew=yes
-      with_items: "{{ brew_utils }}"
-
-    - name: Install brew_utils_extra with homebrew
-      homebrew: name={{ item }} state=latest update_homebrew=yes
-      with_items: "{{ brew_utils_extra }}"
+  - name: Install sshpass
+    homebrew:
+      name: "https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb"
+      state: latest
 
     - name: Cleanup after brewing
-      shell: brew cleanup
+      shell: brew cleanup -s
