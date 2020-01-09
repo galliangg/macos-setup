@@ -8,7 +8,7 @@
       - ip-in-menu-bar
       - keepingyouawake # replaces insomniax & caffeinex
       - balenaetcher
-      - filezilla
+#      - filezilla # filezilla contains malware https://github.com/Homebrew/homebrew-cask/pull/55583
 
     mindfullness:
       - focusatwill
