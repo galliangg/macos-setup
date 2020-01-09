@@ -2,35 +2,35 @@
 - hosts: localhost
   vars:
 #This playbook is for Homebrew only
-  brew_taps:
-    - homebrew/core
-    - homebrew/services
-    - homebrew/cask
-    - homebrew/cask-drivers
-    - homebrew/cask-eid
-    - homebrew/cask-fonts
-    - homebrew/cask-versions
-    - buo/cask-upgrade  # for brew cu
-    - thoughtbot/formulae  # for rcm
-    - vitorgalvao/tiny-scripts # for cask-repair
-    - gerbera/gerbera # for gerbera
+    brew_taps:
+      - homebrew/core
+      - homebrew/services
+      - homebrew/cask
+      - homebrew/cask-drivers
+      - homebrew/cask-eid
+      - homebrew/cask-fonts
+      - homebrew/cask-versions
+      - buo/cask-upgrade  # for brew cu
+      - thoughtbot/formulae  # for rcm
+      - vitorgalvao/tiny-scripts # for cask-repair
+      - gerbera/gerbera # for gerbera
 
-  brew_utils:
-    - ansible #already installed by ./mac bootstrap script
-    - cask-repair # https://github.com/Homebrew/homebrew-cask/blob/master/CONTRIBUTING.md#updating-a-cask
-    - dockutil
-    - mas
-    - pwgen # password generator
-    - git
-    - libdvdcss
-    - mas
-    - mtr
-    - nmap
-    - pwgen
-    - rcm
-#   - sshpass
-    - trash
-    - youtube-dl
+    brew_utils:
+      - ansible #already installed by ./mac bootstrap script
+      - cask-repair # https://github.com/Homebrew/homebrew-cask/blob/master/CONTRIBUTING.md#updating-a-cask
+      - dockutil
+      - mas
+      - pwgen # password generator
+      - git
+      - libdvdcss
+      - mas
+      - mtr
+      - nmap
+      - pwgen
+      - rcm
+#     - sshpass
+      - trash
+      - youtube-dl
 
   tasks:
   - name: Install homebrew taps from brew_taps
@@ -48,7 +48,7 @@
   - name: Install sshpass
     homebrew:
       name: "https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb"
-      state: latest
+      state: present
 
-    - name: Cleanup after brewing
-      shell: brew cleanup -s
+#  - name: Cleanup after brewing
+#    shell: "brew cleanup -s"
