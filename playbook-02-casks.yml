@@ -31,7 +31,7 @@
       - sony-ps4-remote-play # ps4 remote play
       - philips-hue-sync
       - scummvm  # Monkeys
-      - whatsapp
+#      - whatsapp # Now in the App store
       - spotify
 
     the_rest:
