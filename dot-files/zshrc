@@ -1,0 +1,37 @@
+# Managed by Ansible!
+#
+# Add Colour
+PROMPT='%F{cyan}%n%f@%F{green}%m:%F{yellow}%~%f%(!.#.$) '
+export CLICOLOR=1
+export LSCOLORS=ExFxBxDxCxegedabagacad
+#
+# Add Homebrew sbin directory to $PATH
+export PATH="/usr/local/sbin:$PATH"
+#
+# Add Homebrew python directory to $PATH
+#export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+#
+# Add bash aliases for zsh
+if [ -f $HOME/.bash_aliases ]; then
+    source $HOME/.bash_aliases
+fi
+
+# %m%#
+        # %m shows the first element of the hostname
+        # %# shows a # when the current prompt has super-user privileges (e.g. after a sudo -s)
+        # and otherwise the % symbol (the default zsh prompt symbol).
+        # %~ will display a path that starts with the user’s home directory with the ~
+        # so it will shorten /Users/armin/Projects/ to ~/Projects.
+        # %n $USERNAME.
+#
+# Avoid succesive duplicates in the bash command history.
+HISTCONTROL=ignoredups:erasedups
+# Append commands to the bash command history file (~/.bash_history)
+# instead of overwriting it.
+shopt -s histappend
+# Append commands to the history every time a prompt is shown,
+# instead of after closing the session.
+PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+# Large history file
+HISTFILESIZE=10000000
+#
