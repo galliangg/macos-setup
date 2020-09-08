@@ -4,3 +4,5 @@ alias lls="ls -lAh"
 alias dns="sudo killall -HUP mDNSResponder;sudo killall mDNSResponderHelper;sudo dscacheutil -flushcache"
 # Kill zombie VMs
 alias nobrains='sudo /Library/Application\ Support/VirtualBox/LaunchDaemons/VirtualBoxStartup.sh restart'
+# update homebrew
+alias bu="brew update && brew upgrade && brew cleanup -s"

@@ -44,20 +44,23 @@
       #- vagrant # | https://www.vagrantup.com/downloads.html
       #- vagrant-manager
 
-
+    # Not yet installed in this script
     applications_v2:
       - asix-ax88179 # Driver for usb ethernet adaptor
       - prolific-pl2303 # Driver for usb serial adaptor
 
     brew_taps: # Make sure casks work
-    - homebrew/core
-    - homebrew/services
-    - homebrew/cask
-    - homebrew/cask-drivers
-    - homebrew/cask-eid
-    - homebrew/cask-fonts
-    - homebrew/cask-versions
-    - buo/cask-upgrade  # for brew cu
+      - homebrew/core
+      - homebrew/services
+      - homebrew/cask
+      - homebrew/cask-drivers
+      - homebrew/cask-fonts
+      - homebrew/cask-versions
+      - buo/cask-upgrade  # for brew cu
+      - thoughtbot/formulae  # for rcm
+      - vitorgalvao/tiny-scripts # for cask-repair
+      - gerbera/gerbera # for gerbera
+      - esolitos/ipa # for sshpass
 
     home: "{{ lookup('env','HOME') }}"
 

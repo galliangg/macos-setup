@@ -1,19 +1,15 @@
 #!/bin/sh
 
 # Welcome to the galliangg laptop script!
-# Be prepared to turn your OSX box into
-# a development beast.
 #
-# This script bootstraps our OSX laptop to a point where we can run
+# This script bootstraps a MacOS laptop to a point where we can run
 # Ansible on localhost. It;
 #  1. Installs
-#    - xcode
+#    - Xcode Command Line Utilities
 #    - homebrew
-#    - pip
-#    - ansible (via pip) from http://binarynature.blogspot.co.uk/2016/01/install-ansible-on-os-x-el-capitan_30.html
-#    - a few ansible galaxy playbooks (zsh, homebrew, cask etc)
+#    - ansible via Homebrew
 #  2. Kicks off the ansible playbook
-#    - main.yml
+#    - playbook.yml
 #
 #  Run this:
 #  sh -c "$(curl -fsSL https://raw.githubusercontent.com/galliangg/macos-setup/master/install.sh)"
@@ -45,14 +41,14 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # Install Homebrew
 if ! command -v brew >/dev/null; then
   fancy_echo "Installing Homebrew..."
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" </dev/null
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" </dev/null
+
 else
   fancy_echo "Homebrew already installed. Skipping."
 fi
 # [Install Ansible](http://docs.ansible.com/intro_installation.html).
 if ! command -v ansible >/dev/null; then
   fancy_echo "Installing Ansible ..."
-  #pip install --user --upgrade ansible
   brew install ansible
   sudo mkdir /etc/ansible
   sudo curl -L https://raw.githubusercontent.com/ansible/ansible/devel/examples/ansible.cfg -o /etc/ansible/ansible.cfg

@@ -7,13 +7,14 @@
       - homebrew/services
       - homebrew/cask
       - homebrew/cask-drivers
-      - homebrew/cask-eid
       - homebrew/cask-fonts
       - homebrew/cask-versions
       - buo/cask-upgrade  # for brew cu
       - thoughtbot/formulae  # for rcm
       - vitorgalvao/tiny-scripts # for cask-repair
       - gerbera/gerbera # for gerbera
+      - esolitos/ipa # for sshpass
+
 
     brew_utils:
       - ansible #already installed by ./mac bootstrap script
@@ -23,12 +24,11 @@
       - pwgen # password generator
       - git
       - libdvdcss
-      - mas
       - mtr
       - nmap
       - pwgen
       - rcm
-#     - sshpass
+      - sshpass
       - trash
       - youtube-dl
 
@@ -45,10 +45,10 @@
       state: latest
       update_homebrew: yes
 
-  - name: Install sshpass
-    homebrew:
-      name: "https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb"
-      state: present
+#  - name: Install sshpass
+#    homebrew:
+#      name: "https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb"
+#      state: present
 
 #  - name: Cleanup after brewing
 #    shell: "brew cleanup -s"
