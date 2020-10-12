@@ -23,3 +23,15 @@ fi
         # %~ will display a path that starts with the user’s home directory with the ~
         # so it will shorten /Users/armin/Projects/ to ~/Projects.
         # %n $USERNAME.
+#
+# Avoid succesive duplicates in the bash command history.
+HISTCONTROL=ignoredups:erasedups
+# Append commands to the bash command history file (~/.bash_history)
+# instead of overwriting it.
+shopt -s histappend
+# Append commands to the history every time a prompt is shown,
+# instead of after closing the session.
+PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+# Large history file
+HISTFILESIZE=10000000
+#

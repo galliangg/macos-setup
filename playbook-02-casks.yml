@@ -4,15 +4,12 @@
 #Homebrew Cask Applications
     vital:
       - atom # sublime without annoying popup | https://atom.io/download/mac
-      - github # Old name is github-desktop
       - ip-in-menu-bar
       - keepingyouawake # replaces insomniax & caffeinex
-      - balenaetcher
-#      - filezilla # filezilla contains malware https://github.com/Homebrew/homebrew-cask/pull/55583
 
     mindfullness:
       - focusatwill
-      - flux # get more sleep
+#      - flux # get more sleep
 
     video:
       - get-iplayer-automator
@@ -39,6 +36,9 @@
       - shuttle # ssh management
       - wireshark
       - zenmap
+      - balenaetcher
+#      - github # Old name is github-desktop
+#      - filezilla # filezilla contains malware https://github.com/Homebrew/homebrew-cask/pull/55583
       #- virtualbox # | https://www.virtualbox.org/ Doesnt install correctly with ansible
       #- virtualbox-extension-pack
       #- vagrant # | https://www.vagrantup.com/downloads.html
@@ -79,22 +79,22 @@
         name: "{{ mindfullness }}"
         state: present
 
-    - name: Install video apps with homebrew cask
-      homebrew_cask:
-        name: "{{ video }}"
-        state: present
+#    - name: Install video apps with homebrew cask
+#      homebrew_cask:
+#        name: "{{ video }}"
+#        state: present
 
     - name: Install fonts with homebrew cask
       homebrew_cask:
         name: "{{ fonts }}"
         state: present
 
-    - name: Install others apps with homebrew cask
-      homebrew_cask:
-        name: "{{ others }}"
-        state: present
+#    - name: Install others apps with homebrew cask
+#      homebrew_cask:
+#        name: "{{ others }}"
+#        state: present
 
-    - name: Install the_rest apps with homebrew cask
-      homebrew_cask:
-        name: "{{ the_rest }}"
-        state: present
+#    - name: Install the_rest apps with homebrew cask
+#      homebrew_cask:
+#        name: "{{ the_rest }}"
+#        state: present

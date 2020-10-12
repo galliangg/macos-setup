@@ -1,3 +1,5 @@
+# Managed by Ansible!
+#
 # List more
 alias lls="ls -lAh"
 # Kill DNS

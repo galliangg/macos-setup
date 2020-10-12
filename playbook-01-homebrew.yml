@@ -12,7 +12,7 @@
       - buo/cask-upgrade  # for brew cu
       - thoughtbot/formulae  # for rcm
       - vitorgalvao/tiny-scripts # for cask-repair
-      - gerbera/gerbera # for gerbera
+      #- gerbera/gerbera # for gerbera
       - esolitos/ipa # for sshpass
 
 
@@ -22,7 +22,7 @@
       - dockutil
       - mas
       - pwgen # password generator
-      - git
+      #- git
       - libdvdcss
       - mtr
       - nmap
@@ -30,7 +30,7 @@
       - rcm
       - sshpass
       - trash
-      - youtube-dl
+      #- youtube-dl
 
   tasks:
   - name: Install homebrew taps from brew_taps
