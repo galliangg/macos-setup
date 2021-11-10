@@ -21,8 +21,8 @@
       #- sshpass
 
     brew_utils_extra:
-      - gandi.cli
-      - john-jumbo
+      #- gandi.cli
+      #- john-jumbo
       - mtr # better traceroute
       - nmap
       - openssl # for easyrsa
