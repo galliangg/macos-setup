@@ -10,7 +10,7 @@
       - homebrew/cask-fonts
       - homebrew/cask-versions
       - buo/cask-upgrade  # for brew cu
-      - thoughtbot/formulae  # for rcm
+      #- thoughtbot/formulae  # for rcm # Nolonger needed December 2022
       - vitorgalvao/tiny-scripts # for cask-repair
       #- gerbera/gerbera # for gerbera
       - esolitos/ipa # for sshpass

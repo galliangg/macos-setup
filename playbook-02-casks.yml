@@ -19,13 +19,13 @@
       - xld
 
     fonts:
-      - font-et-book # bembo equivalent
-      - font-tex-gyre-pagella # TEX Gyre Pagella - based on URW Palladio
-      - font-fanwood-text # Fanwood Text is a revival of Fairfield, the typeface first published in 1940 and designed by Rudolph Ruzicka
-      - font-goudy-bookletter1911 # Based on Frederic Goudy’s Kennerley Oldstyle
+      - homebrew/cask-fonts/font-et-book # bembo equivalent
+      - homebrew/cask-fonts/font-tex-gyre-pagella # TEX Gyre Pagella - based on URW Palladio
+      - homebrew/cask-fonts/font-fanwood-text # Fanwood Text is a revival of Fairfield, the typeface first published in 1940 and designed by Rudolph Ruzicka
+      - homebrew/cask-fonts/font-goudy-bookletter-1911 # Based on Frederic Goudy’s Kennerley Oldstyle
 
     others:
-      - sony-ps4-remote-play # ps4 remote play
+      - homebrew/cask-drivers/sony-ps-remote-play # ps5 remote play
       - philips-hue-sync
       - scummvm  # Monkeys
 #      - whatsapp # Now in the App store
