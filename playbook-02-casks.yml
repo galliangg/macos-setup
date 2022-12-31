@@ -31,6 +31,14 @@
 #      - whatsapp # Now in the App store
       - spotify
 
+    games:
+      - gog-galaxy
+      - openttd
+      - scummvm
+      - homebrew/cask-drivers/sony-ps-remote-play #needs password
+      - steam
+
+
     the_rest:
       - firefox
       - shuttle # ssh management
