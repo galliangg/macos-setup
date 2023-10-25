@@ -9,5 +9,5 @@ alias nobrains='sudo /Library/Application\ Support/VirtualBox/LaunchDaemons/Virt
 # update homebrew
 alias bu="brew update && brew outdated && brew upgrade && brew cleanup -s"
 # make host work more sensibly
-alias host="host -t A"
-alias host6="host -t AAAA"
+alias h4="host -t A"
+alias h6="host -t AAAA"
