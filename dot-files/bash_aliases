@@ -1,4 +1,4 @@
-# Managed by Ansible!
+# Managed by Ansible! October 2023
 #
 # List more
 alias lls="ls -lAh"
@@ -7,4 +7,7 @@ alias dns="sudo killall -HUP mDNSResponder;sudo killall mDNSResponderHelper;sudo
 # Kill zombie VMs
 alias nobrains='sudo /Library/Application\ Support/VirtualBox/LaunchDaemons/VirtualBoxStartup.sh restart'
 # update homebrew
-alias bu="brew update && brew upgrade && brew cleanup -s"
+alias bu="brew update && brew outdated && brew upgrade && brew cleanup -s"
+# make host work more sensibly
+alias host="host -t A"
+alias host6="host -t AAAA"
