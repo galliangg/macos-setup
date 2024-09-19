@@ -50,8 +50,8 @@ fi
 if ! command -v ansible >/dev/null; then
   fancy_echo "Installing Ansible ..."
   brew install ansible
-  sudo mkdir /etc/ansible
-  sudo curl -L https://raw.githubusercontent.com/ansible/ansible/devel/examples/ansible.cfg -o /etc/ansible/ansible.cfg
+  #sudo mkdir /etc/ansible
+  #sudo curl -L https://raw.githubusercontent.com/ansible/ansible/devel/examples/ansible.cfg -o /etc/ansible/ansible.cfg
 else
   fancy_echo "Ansible already installed. Skipping."
 fi
